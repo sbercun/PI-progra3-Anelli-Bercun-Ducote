@@ -1,0 +1,53 @@
+/* Resets */
+*{
+    box-sizing: border-box;
+}
+ul,ol {
+    padding: 0;
+}
+li {
+    list-style-type:none;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+body {
+    font-family: Nunito;
+    margin: 0;
+    background-color: #eee;
+}
+/* Pelicula individual */
+.ocultar{
+    display: none;
+}
+.mostrar{
+    display: block;}
+/* Peliculas populares */
+.container_peliculas{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.pelicula{
+    width: 400px;
+    height: 600px;
+    background-color: #CBC3E3;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+
+}
+.pelicula img{
+    height: 300px;
+    width: 200px;
+    margin: 30px
+}
+.pelicula h2{
+    margin-left: 30px;
+}
+.pelicula button{
+    margin-left: 30px;
+}
