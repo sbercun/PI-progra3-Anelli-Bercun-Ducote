@@ -1,14 +1,14 @@
 import React from "react";
 import Header from '../../components/Header/Header';
  
-function Series(){
+function Peliculas_populares(){
     return(
         <React.Fragment>
-            <h2>Series Populares</h2>
+            <h2>Peliculas populares</h2>
         </React.Fragment>
     )
 
 }
 
 
- export default Series;
+ export default Peliculas_populares;
