@@ -4,7 +4,7 @@ import Menu from '../Menu/Menu';
 function Header(){
     return(
        <div>
-            <img className='logo' src="./public/img/logoSfondo.jpg" alt=""/>
+            <img className='logo' src="/img/logoSfondo.png" alt=""/>
             <nav className='header'>
                 <Menu />
             </nav>

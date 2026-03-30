@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer(){
     return(
-       <ul>
+       <ul className="nombresFooter">
         <li> Julia </li>
         <li> Sophia</li>
         <li> Mora </li>

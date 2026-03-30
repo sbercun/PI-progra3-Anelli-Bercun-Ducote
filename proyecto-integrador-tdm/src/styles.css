@@ -1,6 +1,7 @@
 /* Resets */
 *{
     box-sizing: border-box;
+
 }
 ul,ol {
     padding: 0;
@@ -16,6 +17,7 @@ body {
     font-family: Nunito;
     margin: 0;
     background-color: #eee;
+    background-color: #CBC3E3;
 }
 /* Pelicula individual */
 .ocultar{
@@ -34,7 +36,7 @@ body {
 .pelicula{
     width: 400px;
     height: 600px;
-    background-color: #CBC3E3;
+    background-color: #ffffff;
     margin: 10px;
     border: 2px solid black;
     border-radius: 10px;
@@ -50,4 +52,14 @@ body {
 }
 .pelicula button{
     margin-left: 30px;
+}
+
+.logo{
+    display: flex;
+    width: 200px;
+    height: 1000px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
 }
