@@ -3,7 +3,12 @@ import Menu from '../Menu/Menu';
 
 function Header(){
     return(
-        <Menu />
+       <div>
+            <img className='logo' src="/img/logoSfondo.png" alt=""/>
+            <nav className='header'>
+                <Menu />
+            </nav>
+        </div>
     )
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Pelicula_individual from "../Pelicula_individual/Pelicula_individual";
 import { Link } from "react-router-dom";
 
-class Peliculas_popular extends Component {
+class Peliculas_cartel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +11,7 @@ class Peliculas_popular extends Component {
   }
 
   componentDidMount() {
-    fetch("https://api.themoviedb.org/3/movie/popular" ,
+    fetch("https://api.themoviedb.org/3/movie/now_playing" ,
         {method: "GET",
             headers: {
                 accept: "application/json",
@@ -30,12 +30,12 @@ class Peliculas_popular extends Component {
     return (
       <section>
         <div className="container_peliculas">
-          {this.state.array_pelicula.slice(0,6).map((pelicula) => (<Pelicula_individual id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview}/>))}
+            {this.state.array_pelicula.slice(0,6).map((pelicula) => (<Pelicula_individual id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview}/>))}
         </div>
-        <Link to="/peliculas_populares">Ver todas</Link>
+         <Link to="/peliculas_cartelera">Ver todas</Link>
       </section>
     );
   }
 }
 
-export default Peliculas_popular;
+export default Peliculas_cartel;
