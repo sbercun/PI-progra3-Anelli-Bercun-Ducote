@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Home from "./screens/Home/Home";
 import Series from "./screens/Series/Series";
 import Favoritos from "./screens/Favoritos/Favoritos";
@@ -24,6 +25,7 @@ function App() {
         <Route path="/signIn" component={CrearCuenta}/>
         <Route path="*" component={NotFound}/>
       </Switch>
+      <Footer />
     </React.Fragment>
     
   );
