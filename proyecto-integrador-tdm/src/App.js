@@ -9,6 +9,7 @@ import LogIn from "./screens/LogIn/LogIn";
 import CrearCuenta from "./screens/CrearCuenta/CrearCuenta";
 import NotFound from "./screens/NotFound/NotFound";
 import Detalle from "./screens/Detalle/Detalle";
+import Resultados from "./screens/Resultados/Resultados";
 import { Switch, Route } from "react-router-dom";
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/peliculas_populares" component={Peliculas_populares}/>
         <Route path="/peliculas_cartelera" component={Peliculas_cartelera}/>
         <Route path="/Detalle/:id" component={Detalle} />
+        <Route path="/resultados/:texto" component={Resultados} />
         <Route path="/favoritos" component={Favoritos}/>
         <Route path="/logIn" component={LogIn}/>
         <Route path="/signIn" component={CrearCuenta}/>
