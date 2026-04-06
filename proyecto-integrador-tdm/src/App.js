@@ -23,7 +23,7 @@ function App() {
         <Route path="/peliculas_populares" component={Peliculas_populares}/>
         <Route path="/peliculas_cartelera" component={Peliculas_cartelera}/>
         <Route path="/Detalle/:id" component={Detalle} />
-        <Route path="/resultados/:texto" component={Resultados} />
+        <Route path="/resultados/:tipo/:texto" component={Resultados} />
         <Route path="/favoritos" component={Favoritos}/>
         <Route path="/logIn" component={LogIn}/>
         <Route path="/signIn" component={CrearCuenta}/>

@@ -11,8 +11,9 @@ class Resultados extends Component {
 
   componentDidMount() {
     const texto = this.props.match.params.texto;
+    const tipo = this.props.match.params.tipo;
 
-    fetch(`https://api.themoviedb.org/3/search/movie?query=${texto}`, {
+    fetch(`https://api.themoviedb.org/3/search/${tipo}?query=${texto}`, {
       method: "GET",
       headers: {
         accept: "application/json",
@@ -29,22 +30,32 @@ class Resultados extends Component {
   }
 
   render() {
-    return (
-      <section>
-        <h2>Resultados</h2>
+  return (
+    <section>
+      <h2>Resultados</h2>
 
-        {this.state.resultados.map((pelicula) => (
+      {this.state.resultados.map((item) => {
+        let nombre
+        // las series tienen name y las pelis tienen title, entonces definimos la variable "nombre" que depende si el fetch trajo un name o un title 
+        if (item.title) {
+          nombre = item.title;
+        } else {
+          nombre = item.name;
+        }
+
+        return (
           <Pelicula_individual
-            key={pelicula.id}
-            id={pelicula.id}
-            imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
-            nombre={pelicula.title}
-            descripcion={pelicula.overview}
+            key={item.id}
+            id={item.id}
+            imagen={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+            nombre={nombre}
+            descripcion={item.overview}
           />
-        ))}
-      </section>
-    );
-  }
+        );
+      })}
+    </section>
+  );
+}
 }
 
 export default Resultados;
