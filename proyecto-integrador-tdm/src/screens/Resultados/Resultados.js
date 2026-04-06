@@ -12,18 +12,20 @@ class Resultados extends Component {
   componentDidMount() {
     const texto = this.props.match.params.texto;
     const tipo = this.props.match.params.tipo;
+    // definimos las variables texto y tipo. Su valor viene de la ruta parametrizada en App, que trae la info de Buscador
 
     fetch(`https://api.themoviedb.org/3/search/${tipo}?query=${texto}`, {
+      // usamos "query" porque la API lo requiere para realizar la búsqueda
       method: "GET",
       headers: {
         accept: "application/json",
         Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTE0MmM2Y2E4ZmM3MTg2OTM0NDU1MDQ2ZGM3NjM2OSIsIm5iZiI6MTc3NDU1OTQ0Mi4xMzY5OTk4LCJzdWIiOiI2OWM1YTBkMmIwNjQ3OWNkYjQ0MjFiMGQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.o5IT_ep0A_LgC8mJgaQmE9oW3CTTtgeN52AN9v8FlyE"
       }
     })
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then((data) => {
         this.setState({
-          resultados: data.results || []
+          resultados: data.results
         });
       })
       .catch((error) => console.log(error));
