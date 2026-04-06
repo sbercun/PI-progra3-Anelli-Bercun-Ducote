@@ -7,7 +7,9 @@ class Peliculas_populares extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      array_pelicula: []
+      array_pelicula: [],
+      peliculasFiltradas:[],
+      valorUsuario: ""
     };
   }
 
@@ -21,18 +23,47 @@ class Peliculas_populares extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          array_pelicula: data.results
+          array_pelicula: data.results,
+          peliculasFiltradas: data.results
         });
       })
       .catch((error) => console.log(error));
   }
 
+  controlarUsuario(event){
+    this.setState({
+        valorUsuario: event.target.value
+    })
+  }
+  
+  filtrarPeliculas(event){
+    event.preventDefault();
+
+    let peliculas = this.state.array_pelicula.filter((pelicula) => pelicula.title.toLowerCase().includes(this.state.valorUsuario.toLowerCase()));
+    this.setState ({
+        peliculasFiltradas: peliculas
+    });
+  }
+  
+  
   render() {
     return (
       <section>
+        <form>
+            {(event) => this.filtrarPeliculas(event)}
+          <input
+            type="text"
+            placeholder="Buscar película"
+            onChange={(event) => this.controlarUsuario(event)}
+            value={this.state.valorInput}
+          />
+          <button type="submit">Buscar</button>
+        </form>
+
         <div className="container_peliculas">
           {this.state.array_pelicula.map((pelicula) => (<Pelicula_individual id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview}/>))}
         </div>
+    
       </section>
     );
   }
