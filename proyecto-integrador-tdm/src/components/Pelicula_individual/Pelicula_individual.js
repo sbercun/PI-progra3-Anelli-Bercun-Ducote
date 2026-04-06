@@ -5,7 +5,8 @@ class Pelicula_individual extends Component{
     constructor(props){
     super(props)
     this.state={
-      VerDesc:false
+      VerDesc:false,
+      esFav: false
     }
   }
   mostrar = () => {
@@ -19,6 +20,39 @@ ocultar = () => {
     VerDesc: false
   });
 };
+
+agregarFav(id){
+  let peliculasGuardadas = localStorage.getItem('favPeliculas');
+  let storageRecuperado = JSON.parse(peliculasGuardadas)
+  
+  //casos que devuelva NULL
+  if (storageRecuperado == null) {
+    let primerValor = [id];
+    let primerValorString = JSON.stringify(primerValor)
+  } else{ //casos que devuelva un array con datos
+    storageRecuperado.push( id )
+    let storageString = JSON.stringify( storageRecuperado )
+    localStorage.setItem( 'favPeliculas', storageString )
+  }
+  this.setState( {esFav: true} )
+}
+
+sacarFav(id){
+  let peliculasGuardadas = localStorage.getItem('favPeliculas');
+  let storageRecuperado = JSON.parse(peliculasGuardadas)
+  
+  //filtro quedandome con todo menos el id que quiero sacar de favoritos
+  let storageFiltrado = storageRecuperado.filter( pelicula => pelicula !== id )
+
+  //Convierto el resultado a string para guardarlo en el localStorage
+  let nuevoArrayString = JSON.stringify(storageFiltrado)
+  
+  //guardo el nuevo array filtrado en el localStorage
+  localStorage.setItem('favPeliculas', nuevoArrayString)
+
+  //cambio el estado a False para que aparezca el boton de agregar a favoritos
+  this.setState( {esFav: false} )
+}
     render(){
         return(
             <article className='pelicula'>
@@ -26,6 +60,7 @@ ocultar = () => {
                 <h2>{this.props.nombre} </h2> 
                 <p className={this.state.VerDesc ? "mostrar" : "ocultar"}>{this.props.descripcion}</p>
                 <button onClick={() => this.state.VerDesc ? this.ocultar() : this.mostrar()}> {this.state.VerDesc ? "Ver menos" : "Ver mas"}</button>
+                <button onClick={() => this.state.esFav ? this.sacarFav() : this.agregarFav()}> {this.state.esFav ? "Sacar de favoritos" : "Agregar a favoritos"}</button>
                 <Link to={`/Detalle/${this.props.id}`}>Ir a detalle</Link>
             </article>
 

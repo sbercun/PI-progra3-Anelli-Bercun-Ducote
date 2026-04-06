@@ -7,7 +7,6 @@ class Peliculas_cartel extends Component {
     super(props);
     this.state = {
       array_pelicula: [],
-      esFav: false
     };
   }
 
@@ -25,39 +24,6 @@ class Peliculas_cartel extends Component {
         });
       })
       .catch((error) => console.log(error));
-  }
-
-  agregarFav(id){
-    let peliculasGuardadas = localStorage.getItem('favPeliculas');
-    let storageRecuperado = JSON.parse(peliculasGuardadas)
-    
-    //casos que devuelva NULL
-    if (storageRecuperado == null) {
-      let primerValor = [id];
-      let primerValorString = JSON.stringify(primerValor)
-    } else{ //casos que devuelva un array con datos
-      storageRecuperado.push( id )
-	    let storageString = JSON.stringify( storageRecuperado )
-	    localStorage.setItem( 'favPeliculas', storageString )
-    }
-    this.setState( {esFav: true} )
-  }
-
-  sacarFav(id){
-    let peliculasGuardadas = localStorage.getItem('favPeliculas');
-    let storageRecuperado = JSON.parse(peliculasGuardadas)
-    
-    //filtro quedandome con todo menos el id que quiero sacar de favoritos
-    let storageFiltrado = storageRecuperado.filter( pelicula => pelicula !== id )
-
-    //Convierto el resultado a string para guardarlo en el localStorage
-    let nuevoArrayString = JSON.stringify(storageFiltrado)
-    
-    //guardo el nuevo array filtrado en el localStorage
-    localStorage.setItem('favPeliculas', nuevoArrayString)
-
-    //cambio el estado a False para que aparezca el boton de agregar a favoritos
-    this.setState( {esFav: false} )
   }
 
   render() {
