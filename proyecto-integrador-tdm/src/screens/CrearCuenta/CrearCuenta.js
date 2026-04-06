@@ -15,10 +15,6 @@ class CrearCuenta extends Component {
     }
 
 
-
-
-
-
     evitarSubmit(event) {
         event.preventDefault();
 
