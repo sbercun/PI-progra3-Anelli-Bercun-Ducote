@@ -13,6 +13,7 @@ import Resultados from "./screens/Resultados/Resultados";
 import { Switch, Route } from "react-router-dom";
 
 
+
 function App() {
   return (
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/logIn" component={LogIn}/>
         <Route path="/signIn" component={CrearCuenta}/>
         <Route path="*" component={NotFound}/>
+        
       </Switch>
       <Footer />
     </React.Fragment>
