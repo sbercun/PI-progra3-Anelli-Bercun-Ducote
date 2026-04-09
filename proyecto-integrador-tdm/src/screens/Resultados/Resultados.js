@@ -5,7 +5,8 @@ class Resultados extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      resultados: []
+      resultados: [],
+      loading: true
     };
   }
 
@@ -25,14 +26,27 @@ class Resultados extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          resultados: data.results
+          resultados: data.results,
+          loading: false
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => 
+        console.log(error));
+      this.setState({
+        loading: false
+      })
   }
 
   render() {
-  return (
+    if (this.state.loading) {
+      return (
+        <section>
+          <h2>Cargando...</h2>
+        </section>
+      );
+    }
+    
+    return (
     <section>
       <h2>Resultados</h2>
 
