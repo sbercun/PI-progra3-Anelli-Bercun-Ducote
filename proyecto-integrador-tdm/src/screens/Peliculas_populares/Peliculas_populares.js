@@ -9,7 +9,8 @@ class Peliculas_populares extends Component {
     this.state = {
       array_pelicula: [],
       peliculasFiltradas:[],
-      valorUsuario: ""
+      valorUsuario: "",
+      loading: true
     };
   }
 
@@ -24,10 +25,17 @@ class Peliculas_populares extends Component {
       .then((data) => {
         this.setState({
           array_pelicula: data.results,
-          peliculasFiltradas: data.results
+          peliculasFiltradas: data.results,
+          loading: false
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => 
+      console.log(error));
+      this.setState ({
+        loading: false
+      });
+    
+    
   }
 
   controlarUsuario(event){
@@ -46,27 +54,42 @@ class Peliculas_populares extends Component {
   }
   
   
-  render() {
+ render() {
+
+  if (this.state.loading) {
     return (
       <section>
-        <form>
-            {(event) => this.filtrarPeliculas(event)}
-          <input
-            type="text"
-            placeholder="Buscar película"
-            onChange={(event) => this.controlarUsuario(event)}
-            value={this.state.valorInput}
-          />
-          <button type="submit">Buscar</button>
-        </form>
-
-        <div className="container_peliculas">
-          {this.state.array_pelicula.map((pelicula) => (<Pelicula_individual id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview}/>))}
-        </div>
-    
+        <h2>Cargando...</h2>
       </section>
     );
   }
+
+  return (
+    <section>
+      <form onSubmit={(event) => this.filtrarPeliculas(event)}>
+        <input
+          type="text"
+          placeholder="Buscar película"
+          onChange={(event) => this.controlarUsuario(event)}
+          value={this.state.valorUsuario}
+        />
+        <button type="submit">Buscar</button>
+      </form>
+
+      <div className="container_peliculas">
+        {this.state.peliculasFiltradas.map((pelicula) => (
+          <Pelicula_individual
+            key={pelicula.id}
+            id={pelicula.id}
+            imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
+            nombre={pelicula.title}
+            descripcion={pelicula.overview}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
 }
 
 export default Peliculas_populares;

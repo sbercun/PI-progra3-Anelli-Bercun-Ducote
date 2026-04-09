@@ -13,9 +13,5 @@ function NotFound() {
 export default NotFound;
 
 
-/* fata agregar en App.js alfinal de switch:
-<Switch>
-<Route component = {NotFound} />
-</Switch> */
 
 
