@@ -7,20 +7,20 @@ class Favoritos extends Component{
         super(props);
         // Defino el estado inicial de los componentes para peliculas y series
         this.state = {  
-            infoFav: {}, //con llaves xq la api me devuelve un objeto liyetal
+            infoFav: [], //quiero un array de objetos literales
         };
     }
     
     componentDidMount(){
         let peliculasGuardadas = localStorage.getItem('favPeliculas');
         let storageRecuperado = JSON.parse(peliculasGuardadas);
-        
+        let arrayPeliculas = [];
+
         storageRecuperado.map( pelicula => {fetch(`https://api.themoviedb.org/3/movie/${pelicula}`)
         .then((response) => response.json())
         .then((data) => {
-            this.setState({
-                infoFav: data
-            });
+            arrayPeliculas.push(data);
+        
             console.log("heloooo");
         })
         .catch((error) => console.log(error))}
