@@ -16,13 +16,12 @@ a {
 body {
     font-family: Nunito;
     margin: 0;
-    background-color: #eee;
-    background-color: #CBC3E3;
+    background-color: black;
 }
 
 /* HEADER */
 .main-header {
-    background-color: #cbc3e3;
+    background-color: black;
     padding: 20px 30px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -122,72 +121,59 @@ body {
 
 /* CARD INDIVIDUAL */
 .pelicula {
-    width: 260px;
-    background-color: #ffffff;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    margin: 20px;
-    transition: transform 0.2s ease;
-}
-
-.pelicula:hover {
-    transform: translateY(-4px);
+  background: #14141c;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 220px;
+  margin: 10px;
+  color: white;
+  border: 2px solid white;
 }
 
 .pelicula-image {
-    width: 100%;
-    height: 390px;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 
-.pelicula-body {
-    padding: 16px;
+.peliculas-body {
+  padding: 10px;
+}
+.peliculas-title {
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
-.pelicula-title {
-    font-size: 18px;
-    margin: 0 0 12px 0;
-    color: #2b2142;
+.mostrar {
+  display: block;
+  font-size: 13px;
+  color: #ccc;
+  margin-bottom: 8px;
 }
 
-.pelicula-text {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 16px;
-    line-height: 1.4;
+.ocultar {
+  display: none;
 }
 
-.pelicula-button {
-    display: inline-block;
-    background-color: #b39ddb;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 18px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.pelicula-button:hover {
-    background-color: #9c86d6;
+.peliculas-button {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 6px;
+  border: none;
+  border-radius: 6px;
+  background: #C9A0DC;
+  color: white;
+  text-align: center;
+  font-size: 13px;
 }
 
 /* CONTENEDOR DE PELICULAS */
-.peliculas-cartel {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 24px;
-    padding: 30px 20px;
+.container_peliculas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-
-.ocultar{
-    display: none;
-}
-.mostrar{
-    display: block;}
 
 .pelicula-popular {
     width: 100%;
