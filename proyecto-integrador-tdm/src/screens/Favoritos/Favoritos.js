@@ -8,6 +8,7 @@ class Favoritos extends Component{
         // Defino el estado inicial de los componentes para peliculas y series
         this.state = {  
             infoFav: [], //quiero un array de objetos literales
+            loading: true
         };
     }
     
@@ -17,6 +18,12 @@ class Favoritos extends Component{
     
         if (storageRecuperado == null) {
             storageRecuperado = [];
+        }
+
+        if (storageRecuperado.length === 0 ) {
+            this.setState({
+                loading:false
+            });
         }
     
         let arrayPeliculas = [];
@@ -33,17 +40,32 @@ class Favoritos extends Component{
             .then((data) => {
                 arrayPeliculas.push(data);
     
-                this.setState({ infoFav: arrayPeliculas }); // ← clave
+                this.setState({ 
+                    infoFav: arrayPeliculas, 
+                }); // ← clave
+
+                
             })
-            .catch((error) => console.log(error))
-        });
+                if (arrayPeliculas.length === storageRecuperado.length) {
+                    this.setState({
+                        loading:false
+                    });
+                }
+        })
+            .catch((error) => console.log(error));
+            this.setState({
+                loading:false
+            })
+      
     }
 
     render(){
+        if (this.state.loading) {
         return(
             <div>
                 <h1>Mis Favoritos</h1>
                 <section>
+                    <h2>Cargando....</h2>
                     {this.state.infoFav.map(peli => (
                     <Pelicula_individual
                     key={peli.id}
@@ -56,6 +78,7 @@ class Favoritos extends Component{
                 </section>
             </div>
         )
+    }
     }
 
 }
