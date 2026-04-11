@@ -69,12 +69,14 @@ componentDidMount(){
 render(){
     return(
         <article className='pelicula'>
-            <img src={this.props.imagen} alt="" />
-            <h2>{this.props.nombre} </h2> 
-            <p className={this.state.VerDesc ? "mostrar" : "ocultar"}>{this.props.descripcion}</p>
-            <button onClick={() => this.state.VerDesc ? this.ocultar() : this.mostrar()}> {this.state.VerDesc ? "Ver menos" : "Ver mas"}</button>
-            <button onClick={() => this.state.esFav ? this.sacarFav(this.props.id) : this.agregarFav(this.props.id)}> {this.state.esFav ? "Sacar de favoritos" : "Agregar a favoritos"}</button>
-            <Link to={`/Detalle/${this.props.id}`}>Ir a detalle</Link>
+            <img className="pelicula-image" src={this.props.imagen} alt="" />
+            <div className="peliculas-body">
+              <h2 className="peliculas-title">{this.props.nombre} </h2> 
+              <p className={this.state.VerDesc ? "mostrar" : "ocultar"}>{this.props.descripcion}</p>
+              <button className="peliculas-button" onClick={() => this.state.VerDesc ? this.ocultar() : this.mostrar()}> {this.state.VerDesc ? "Ver menos" : "Ver mas"}</button>
+              <button className="peliculas-button" onClick={() => this.state.esFav ? this.sacarFav(this.props.id) : this.agregarFav(this.props.id)}> {this.state.esFav ? "Sacar de favoritos" : "Agregar a favoritos"}</button>
+              <Link className="peliculas-button" to={`/Detalle/${this.props.id}`}>Ir a detalle</Link>
+            </div>
         </article>
 
     )

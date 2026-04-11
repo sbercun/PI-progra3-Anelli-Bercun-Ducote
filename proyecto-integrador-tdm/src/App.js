@@ -18,7 +18,7 @@ function App() {
   return (
 
     <React.Fragment>
-      <Header />
+      < Header />
       <Switch>
         <Route path="/" exact={true} component={Home}/>
         <Route path="/peliculas_populares" component={Peliculas_populares}/>

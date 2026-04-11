@@ -28,7 +28,7 @@ class Peliculas_cartel extends Component {
 
   render() {
     return (
-      <section>
+      <section className="peliculas-cartel">
         <div className="container_peliculas">
             {this.state.array_pelicula.slice(0,6).map((pelicula) => (<Pelicula_individual id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview}/>))}
         </div>

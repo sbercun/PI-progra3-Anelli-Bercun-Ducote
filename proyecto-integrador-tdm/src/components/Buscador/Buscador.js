@@ -30,13 +30,13 @@ class Buscador extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={(event) => this.onSubmit(event)}>
-          <input type="text" onChange={(event) => this.guardarBusqueda(event)} value={this.state.busqueda}/>
+      <div className="search-container">
+        <form className="search-form" onSubmit={(event) => this.onSubmit(event)}>
+          <input className="search-input" type="text" onChange={(event) => this.guardarBusqueda(event)} value={this.state.busqueda}/>
           {/* el evento onChange ejecuta la funcion guardarBusqueda para obtener la información que el usuario va ingresando en el campo. Completamos la propiedad value con el valor del estado para que el usuario vea en pantalla lo que va escribiendo. */}
-          <button type="submit">Buscar</button>
-          <button type="button" onClick={() => this.setState({ tipo: "movie" })} style={{ backgroundColor: this.state.tipo === "movie" ? "pink" : "white" }} > Película </button>
-          <button type="button" onClick={() => this.setState({ tipo: "tv" })} style={{backgroundColor: this.state.tipo === "tv" ? "pink" : "white"}}> Series </button>
+          <button className="search-button" type="submit">Buscar</button>
+          <button className="other-button" type="button" onClick={() => this.setState({ tipo: "movie" })} style={{ backgroundColor: this.state.tipo === "movie" ? "pink" : "white" }} > Película </button>
+          <button className="other-button" type="button" onClick={() => this.setState({ tipo: "tv" })} style={{backgroundColor: this.state.tipo === "tv" ? "pink" : "white"}}> Series </button>
           {/* cuando el usuario clickea el boton, cambia el valor de la variable "tipo" a movie o tv respectivamente, el style cambia el color del boton segun si lo selecciono el usuario o no */}
         </form>
       </div>
