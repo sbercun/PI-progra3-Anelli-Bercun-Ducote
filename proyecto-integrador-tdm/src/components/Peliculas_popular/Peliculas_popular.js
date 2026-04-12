@@ -30,7 +30,7 @@ class Peliculas_popular extends Component {
     return (
       <section className="pelicula-popular">
         <div className="container_peliculas">
-          {this.state.array_pelicula.slice(0,6).map((pelicula) => (<Pelicula_individual id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview}/>))}
+          {this.state.array_pelicula.slice(0,6).map((pelicula) => (<Pelicula_individual key={pelicula.id} id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview}/>))}
         </div>
         <Link to="/peliculas_populares">Ver todas</Link>
       </section>
