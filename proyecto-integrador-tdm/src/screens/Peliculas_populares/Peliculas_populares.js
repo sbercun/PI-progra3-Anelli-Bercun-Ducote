@@ -66,15 +66,17 @@ class Peliculas_populares extends Component {
 
   return (
     <section>
-      <form onSubmit={(event) => this.filtrarPeliculas(event)}>
-        <input
-          type="text"
-          placeholder="Buscar película"
-          onChange={(event) => this.controlarUsuario(event)}
-          value={this.state.valorUsuario}
-        />
-        <button type="submit">Buscar</button>
-      </form>
+      <div className="search-container">
+        <form className="search-form" onSubmit={(event) => this.filtrarPeliculas(event)}>
+          <input className="search-input"
+            type="text"
+            placeholder="Buscar película"
+            onChange={(event) => this.controlarUsuario(event)}
+            value={this.state.valorUsuario}
+          />
+          <button className="search-button" type="submit">Buscar</button>
+        </form>
+      </div>
 
       <div className="container_peliculas">
         {this.state.peliculasFiltradas.map((pelicula) => (
