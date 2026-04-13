@@ -6,6 +6,7 @@ class Favoritos extends Component {
         super(props);
         this.state = {  
             infoFav: [],
+            loading: true
            
         };
     }
@@ -40,7 +41,8 @@ class Favoritos extends Component {
                 arrayPeliculas.push(data);
 
                 this.setState({
-                    infoFav: arrayPeliculas
+                    infoFav: arrayPeliculas,
+                    loading: false
                 });
 
                 if (arrayPeliculas.length === storageRecuperado.length) {
@@ -54,6 +56,11 @@ class Favoritos extends Component {
     }
 
     render(){
+        if (this.state.loading) {
+            return(
+                <h2>Cargando...</h2>
+            )
+        }
         return(
             <div>
                 <h1>Mis Favoritos</h1>
