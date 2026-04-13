@@ -14,6 +14,15 @@ class LogIn extends Component {
         event.preventDefault();
     }
     
+// onSubmit(email, password){
+//     //verificaciones de usuario ya registrado (email ya existe) y contraseña que coincide con el email
+//         //recuperar solo el email ingresado y verificar si coincide con la conytraseña ingresada.
+//     //
+//     if(user){
+//         cookies.set('user-auth-cookie', user.email)
+//     }
+// }
+
     render() {
         return (
            <div>
