@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Header from '../../components/Header/Header';
+import Cookies from 'universal-cookie';
 
-
-
+const cookies = new Cookies()
 
 class CrearCuenta extends Component {
     constructor(props) {
@@ -17,23 +17,13 @@ class CrearCuenta extends Component {
 
     evitarSubmit(event) {
         event.preventDefault();
-
-
-
-
         let usuariosGuardados = localStorage.getItem('usuarios');
-
-
-
 
         if (usuariosGuardados === null) {
             usuariosGuardados = [];
         } else {
             usuariosGuardados = JSON.parse(usuariosGuardados);
         }
-
-
-
 
         let usuariosConEseEmail = usuariosGuardados.filter((usuario) => {
             return usuario.email === this.state.email;
@@ -60,42 +50,30 @@ class CrearCuenta extends Component {
 
         usuariosGuardados.push(nuevoUsuario);
 
-
-        localStorage.setItem("Usuarios", JSON.stringify(usuariosGuardados));
-
-
+        localStorage.setItem("usuarios", JSON.stringify(usuariosGuardados));
+        
+        cookies.set('user-auth-cookie', this.state.email);
+        
         this.setState({
             email: "",
             password: "",
             error: "",
         });
 
-
     }
-
-
 
 
     controlarEmail(event) {
         this.setState({ email: event.target.value });
     }
 
-
-
-
     controlarPassword(event) {
         this.setState({ password: event.target.value });
     }
 
-
-
-
     render() {
         return (
             <div>
-
-
-
 
                 <React.Fragment>
                     <h2>Crear cuenta</h2>
@@ -110,8 +88,6 @@ class CrearCuenta extends Component {
                         onChange={(event) => this.controlarEmail(event)} />
 
 
-
-
                     <input
                         type="password"
                         placeholder="Contraseña"
@@ -119,20 +95,15 @@ class CrearCuenta extends Component {
                         onChange={(event) => this.controlarPassword(event)} />
 
 
-
-
                     <button type="submit">Crear cuenta</button>
                 </form>
 
-
                 {this.state.error !== "" ? <p>{this.state.error}</p> : null}
-
 
             </div>
         );
     }
 }
-
 
 
 
