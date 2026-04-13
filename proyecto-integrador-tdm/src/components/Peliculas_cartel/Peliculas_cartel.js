@@ -32,7 +32,7 @@ class Peliculas_cartel extends Component {
         <div className="container_peliculas">
             {this.state.array_pelicula.slice(0,6).map((pelicula) => (<Pelicula_individual key={pelicula.id} id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview}/>))}
         </div>
-         <Link to="/peliculas_cartelera">Ver todas</Link>
+         <Link className="boton-ver-todas" to="/peliculas_cartelera">Ver todas</Link>
       </section>
     );
   }

@@ -3,9 +3,9 @@ import React from "react";
 function Footer(){
     return(
        <ul className="nombresFooter">
-        <li> Julia </li>
-        <li> Sophia</li>
-        <li> Mora </li>
+        <li> Julia Anelli </li>
+        <li> Sophia Bercun</li>
+        <li> Mora Ducote</li>
        </ul>
     )
 }
