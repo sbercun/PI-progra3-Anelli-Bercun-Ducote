@@ -14,8 +14,7 @@ class CrearCuenta extends Component {
         };
     }
 
-
-    evitarSubmit(event) {
+      evitarSubmit(event) {
         event.preventDefault();
         let usuariosGuardados = localStorage.getItem('usuarios');
 
@@ -31,16 +30,14 @@ class CrearCuenta extends Component {
 
 
         if (usuariosConEseEmail.length > 0) {
-            this.setState({ error: "El email ya está en uso" });
+            this.setState({ error: "El email ya está en uso o es invalido" });
             return;
         }
-
 
         if (this.state.password.length < 6) {
             this.setState({ error: "La contraseña debe tener al menos 6 caracteres" });
             return;
         }
-
 
         let nuevoUsuario = {
             email: this.state.email,
@@ -49,11 +46,11 @@ class CrearCuenta extends Component {
 
 
         usuariosGuardados.push(nuevoUsuario);
-
         localStorage.setItem("usuarios", JSON.stringify(usuariosGuardados));
-        
+
         cookies.set('user-auth-cookie', this.state.email);
-        
+        this.props.history.push("/logIn");
+
         this.setState({
             email: "",
             password: "",
@@ -82,31 +79,32 @@ class CrearCuenta extends Component {
 
                 <form onSubmit={(event) => this.evitarSubmit(event)}>
                     <input
-                        type="email"
+                        type="text"
                         placeholder="Email"
                         value={this.state.email}
-                        onChange={(event) => this.controlarEmail(event)} />
-
-
+                        onChange={(event) => this.controlarEmail(event)} 
+                        
+                    />
                     <input
                         type="password"
                         placeholder="Contraseña"
                         value={this.state.password}
-                        onChange={(event) => this.controlarPassword(event)} />
-
+                        onChange={(event) => this.controlarPassword(event)} 
+                        
+                        />
+                       
 
                     <button type="submit">Crear cuenta</button>
                 </form>
 
-                {this.state.error !== "" ? <p>{this.state.error}</p> : null}
+                {this.state.error !== "" ? <p className="mensajeError">{this.state.error}</p> : null}
 
             </div>
         );
     }
 }
 
-
-
 export default CrearCuenta;
+
 
 
