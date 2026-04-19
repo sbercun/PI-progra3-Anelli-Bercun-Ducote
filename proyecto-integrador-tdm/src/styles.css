@@ -22,7 +22,7 @@ body {
 
 h1, h2{
     color: white;
-    text-align: left;
+    text-align: center;
     margin-top: 20px;
 }
 
@@ -231,5 +231,115 @@ h1, h2{
     font-size: 14px;
     display: inline-block;
     padding: 8px;
+}
+
+/*RESPONSIVE */
+
+@media (max-width: 425px ) {
+    h1, h2 {
+        text-align: center;
+        font-size: 22px;
+        margin-top: 15px;
+    }
+
+    .main-header {
+        padding: 15px 12px;
+    }
+
+    .header-logo-container {
+        margin-bottom: 15px;
+    }
+
+    .logo {
+        width: 140px;
+    }
+
+    .header-nav {
+        width: 100%;
+    }
+    .menu-link {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+.search-container {
+        width: 100%;
+        padding: 0 10px;
+        margin: 20px 0;
+    }
+
+    .search-form {
+        width: 100%;
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .search-button {
+        width: 100%;
+    }
+
+    .other-button {
+        width: 100%;
+    }
+
+    .container_peliculas {
+        justify-content: center;
+    }
+
+    .pelicula {
+        width: 85%;
+        margin: 10px 0;
+    }
+
+    .pelicula-image {
+        height: auto;
+    }
+
+    .peliculas-title {
+        font-size: 15px;
+    }
+
+    .mostrar {
+        font-size: 12px;
+    }
+
+    .peliculas-button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .pelicula-popular {
+        padding: 15px 10px;
+    }
+
+    /* BOTON VER TODAS */
+    .boton-ver-todas {
+        display: block;
+        width: 80%;
+        margin: 20px auto 0 auto;
+        text-align: center;
+    }
+
+    /* MENSAJE DE ERROR */
+    .mensajeError {
+        font-size: 13px;
+        padding: 6px;
+        margin: 0 auto;
+        display: block;
+        width: fit-content;
+        text-align: center;
+    }
+
+    /* FOOTER */
+    .nombresFooter {
+        flex-direction: column;
+        gap: 8px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
 }
 
