@@ -30,12 +30,20 @@ class LogIn extends Component {
     }
     
     onSubmit(email, password){
+        let usuarios = [];
+
+        // Verifico que lo guardado en usuarios no sea null
+        if (usersStorage === null) {
+        this.setState({
+            error: "Las credenciales ingresadas son inválidas"
+        });
+        return;
+        }
+
+        let usuariosGuardados = localStorage.getItem("Usuarios");
+
         //verificaciones de usuario ya registrado (email ya existe) y contraseña que coincide con el email
             //recuperar solo el email ingresado y verificar si coincide con la conytraseña ingresada.
-        
-        let usuarios = [];
-        let usuariosGuardados = localStorage.getItem("Usuarios");
-        
         if (usuariosGuardados !== null) {
             usuarios = JSON.parse(usuariosGuardados);
         }
@@ -50,11 +58,19 @@ class LogIn extends Component {
 
         //nos fijamos si el usuario existe y si la contraseña coincide
         if (user && user.password === password) {
+            // Si es igual, creo un nuevo campo llamado usuarioEnSesion en el sessionStorage
+            let sesionActiva = {
+                sesionActiva: true
+            }
+            let sesionStringify = JSON.stringify(sesionActiva);
+            sessionStorage.setItem("usuarioEnSesion", sesionStringify);
+
             //creo la cookie de sesion
             cookies.set('user-auth-cookie', user.email);
             this.props.history.push("/");
+
         } else {
-            this.setState({ error: "Credenciales incorrectos" });
+            this.setState({ error: "Credenciales incorrectas" });
         } 
     }
 
