@@ -17,7 +17,7 @@ class Peliculas_cartelera extends Component {
 
   SiguientePagina() {
     
-    fetch(`https://api.themoviedb.org/3/movie/now_playing?page=${this.state.page}`, 
+    fetch(`https://api.themoviedb.org/3/discover/tv?page=${this.state.page}`, 
         {method: "GET",
             headers: {
                 accept: "application/json",
@@ -42,7 +42,7 @@ class Peliculas_cartelera extends Component {
 
 
   componentDidMount() {
-    fetch(`https://api.themoviedb.org/3/movie/now_playing?page=${this.state.page}`, 
+    fetch(`https://api.themoviedb.org/3/discover/tv?page=${this.state.page}`, 
         {method: "GET",
             headers: {
                 accept: "application/json",
@@ -117,7 +117,7 @@ class Peliculas_cartelera extends Component {
           />
         ))}
       </div>
-      <button className="boton-ver-todas" onClick={() => this.SiguientePagina()} > Siguiente página </button>
+      <button className="boton-ver-todas" onClick={() => this.SiguientePagina()} > Cargar Más </button>
     </section>
   );
 }
