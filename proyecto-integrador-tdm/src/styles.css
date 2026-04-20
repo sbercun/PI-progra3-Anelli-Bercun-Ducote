@@ -236,6 +236,26 @@ p{
     padding: 8px;
 }
 
+/*Form crear cuenta */
+.formSignIn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border-radius: 15px;
+    height: 40px;
+    width: 200px;
+}
+.botonCrear{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border-radius: 10px;
+    height: 30px;
+    width: 100px;
+}
+
 /*RESPONSIVE */
 
 @media (max-width: 425px ) {
