@@ -19,23 +19,24 @@ function App() {
   return (
 
     <React.Fragment>
-      < Header />
-      <Switch>
-        <Route path="/" exact={true} component={Home}/>
-        <Route path="/peliculas_populares" component={Peliculas_populares}/>
-        <Route path="/peliculas_cartelera" component={Peliculas_cartelera}/>
+        <Header />
+
+        <Switch>
+        <Route path="/" exact={true} component={Home} />
+        <Route path="/peliculas_populares" component={Peliculas_populares} />
+        <Route path="/peliculas_cartelera" component={Peliculas_cartelera} />
         <Route path="/Detalle/:id" component={Detalle} />
         <Route path="/Detalle_series/:serie_id" component={Detalle_series} /> 
         <Route path="/resultados/:tipo/:texto" component={Resultados} />
-        <Route path="/favoritos" component={Favoritos}/>
-        <Route path="/logIn" component={LogIn}/>
-        <Route path="/signIn" component={CrearCuenta}/>
-        <Route path="*" component={NotFound}/>
-        
+        <Route path="/favoritos" component={Favoritos} />
+        <Route path="/logIn" component={LogIn} />
+        <Route path="/signIn" component={CrearCuenta} />
+        <Route path="*" component={NotFound} />
+
       </Switch>
       <Footer />
     </React.Fragment>
-    
+
   );
 }
 

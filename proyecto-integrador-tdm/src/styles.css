@@ -279,6 +279,20 @@ p{
 
 }
 
+.noLink{
+     font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: Nunito;
+
+}
+
+/* Resultados */
+.resultados{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
 /*RESPONSIVE */
 

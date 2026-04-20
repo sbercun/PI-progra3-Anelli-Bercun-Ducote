@@ -16,14 +16,28 @@ class Peliculas_populares extends Component {
   }
   
   SiguientePagina() {
-    let nuevaPagina = this.state.page + 1;
+    
+    fetch(`https://api.themoviedb.org/3/movie/popular?page=${this.state.page}`, 
+        {method: "GET",
+            headers: {
+                accept: "application/json",
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTE0MmM2Y2E4ZmM3MTg2OTM0NDU1MDQ2ZGM3NjM2OSIsIm5iZiI6MTc3NDU1OTQ0Mi4xMzY5OTk4LCJzdWIiOiI2OWM1YTBkMmIwNjQ3OWNkYjQ0MjFiMGQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.o5IT_ep0A_LgC8mJgaQmE9oW3CTTtgeN52AN9v8FlyE"
+        }})
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          array_pelicula: this.state.array_pelicula.concat(data.results),
+          peliculasFiltradas: this.state.peliculasFiltradas.concat(data.results),
+          page: this.state.page + 1,
+          loading: true
+      });
+      })
+      .catch((error) => 
+      console.log(error));
+      this.setState ({
+        loading: false
+      });
 
-    this.setState({
-        page: nuevaPagina,
-        loading: true
-    });
-
-    this.componentDidMount(nuevaPagina);
   }
 
 
@@ -39,6 +53,7 @@ class Peliculas_populares extends Component {
         this.setState({
           array_pelicula: data.results,
           peliculasFiltradas: data.results,
+          page: this.state.page + 1,
           loading: false
         });
       })
@@ -69,7 +84,7 @@ class Peliculas_populares extends Component {
   
  render() {
 
-  if (this.state.loading) {
+  if (this.state.peliculasFiltradas.length === 0) {
     return (
       <section>
         <h2>Cargando...</h2>

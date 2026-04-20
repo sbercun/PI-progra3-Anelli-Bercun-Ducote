@@ -49,26 +49,27 @@ class Resultados extends Component {
     return (
     <section>
       <h2>Resultados</h2>
+      <div className="resultados">
+        {this.state.resultados.map((item) => {
+          let nombre
+          // las series tienen name y las pelis tienen title, entonces definimos la variable "nombre" que depende si el fetch trajo un name o un title 
+          if (item.title) {
+            nombre = item.title;
+          } else {
+            nombre = item.name;
+          }
 
-      {this.state.resultados.map((item) => {
-        let nombre
-        // las series tienen name y las pelis tienen title, entonces definimos la variable "nombre" que depende si el fetch trajo un name o un title 
-        if (item.title) {
-          nombre = item.title;
-        } else {
-          nombre = item.name;
-        }
-
-        return (
-          <Pelicula_individual
-            key={item.id}
-            id={item.id}
-            imagen={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-            nombre={nombre}
-            descripcion={item.overview}
-          />
-        );
-      })}
+          return (
+            <Pelicula_individual
+              key={item.id}
+              id={item.id}
+              imagen={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+              nombre={nombre}
+              descripcion={item.overview}
+            />
+          );
+        })}
+      </div>
     </section>
   );
 }
