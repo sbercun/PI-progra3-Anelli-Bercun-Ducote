@@ -263,13 +263,21 @@ p{
 /* IR al detalle */
 .container_detalle{
     display: flex;
-    align-items: row;
-    margin-top: 20px;
-    padding: 20px;
-    color: #C9A0DC;
+}
+
+.container_detalle img{
+    height: 500px;
+    width: 400px;
+    border-radius: 10px;
+    border: 3px solid white;
+    margin: 40px;
 
 }
 
+.detalles{
+    margin: 40px;
+
+}
 
 
 /*RESPONSIVE */
