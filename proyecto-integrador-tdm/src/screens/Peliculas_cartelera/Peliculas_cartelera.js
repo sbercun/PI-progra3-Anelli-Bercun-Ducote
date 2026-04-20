@@ -10,13 +10,24 @@ class Peliculas_cartelera extends Component {
       array_pelicula: [],
       peliculasFiltradas: [],
       valorUsuario: "",
-      loading: true
+      loading: true,
+      page: 1
     };
   }
 
+  SiguientePagina() {
+    let nuevaPagina = this.state.page + 1;
+
+    this.setState({
+        page: nuevaPagina,
+        loading: true
+    });
+
+    this.componentDidMount(nuevaPagina);
+  }
 
   componentDidMount() {
-    fetch("https://api.themoviedb.org/3/movie/now_playing",
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?page=${this.state.page}`,
       {
         method: "GET",
         headers: {
@@ -67,15 +78,17 @@ class Peliculas_cartelera extends Component {
 
     return (
       <section>
-        <form onSubmit={(event) => this.filtrarPeliculas(event)}>
-          <input
+        <div className="search-container">
+        <form className="search-form" onSubmit={(event) => this.filtrarPeliculas(event)}>
+          <input className="search-input"
             type="text"
             placeholder="Buscar película"
             onChange={(event) => this.controlarUsuario(event)}
-            value={this.state.valorUsuario} 
+            value={this.state.valorUsuario}
           />
-          <button type="submit">Buscar</button>
+          <button  className="search-button" type="submit">Buscar</button>
         </form>
+      </div>
 
         <div className="container_peliculas">
           {this.state.peliculasFiltradas.map((pelicula) => (
@@ -88,6 +101,7 @@ class Peliculas_cartelera extends Component {
             />
           ))}
         </div>
+        <button className="boton-ver-todas" onClick={() => this.SiguientePagina()} > Siguiente página </button>
       </section>
     );
   }
