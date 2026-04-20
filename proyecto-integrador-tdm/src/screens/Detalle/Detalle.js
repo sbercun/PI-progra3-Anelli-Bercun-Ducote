@@ -31,10 +31,10 @@ class Detalle extends Component{
     }
 
     return (
-        <section>
+        <section className="container_detalle">
             <h1>{pelicula.title}</h1>
             <img src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} alt="" />
-            <div className="detalle">
+            <div className="detalles">
                 <p>Rating: {pelicula.vote_average}</p>
                 <p>Fecha: {pelicula.release_date}</p>
                 <p>Duración: {pelicula.runtime} minutos</p>
