@@ -14,7 +14,7 @@ class CrearCuenta extends Component {
         };
     }
 
-      evitarSubmit(event) {
+    evitarSubmit(event) {
         event.preventDefault();
         let usuariosGuardados = localStorage.getItem('usuarios');
 
@@ -28,8 +28,16 @@ class CrearCuenta extends Component {
             return usuario.email === this.state.email;
         });
 
+        /*recorro el mail enga un @ */
+        let tieneArroba = false;
 
-        if (usuariosConEseEmail.length > 0) {
+        for (let i = 0; i < this.state.email.length; i++) {
+            if (this.state.email[i] === "@") {
+                tieneArroba = true;
+            }
+        }
+
+        if (usuariosConEseEmail.length > 0 || !tieneArroba) {
             this.setState({ error: "El email ya está en uso o es invalido" });
             return;
         }
@@ -82,17 +90,17 @@ class CrearCuenta extends Component {
                         type="text"
                         placeholder="Email"
                         value={this.state.email}
-                        onChange={(event) => this.controlarEmail(event)} 
-                        
+                        onChange={(event) => this.controlarEmail(event)}
+
                     />
                     <input className="formSignIn"
                         type="password"
                         placeholder="Contraseña"
                         value={this.state.password}
-                        onChange={(event) => this.controlarPassword(event)} 
-                        
-                        />
-                       
+                        onChange={(event) => this.controlarPassword(event)}
+
+                    />
+
 
                     <button className="botonCrear" type="submit">Crear cuenta</button>
                 </form>
