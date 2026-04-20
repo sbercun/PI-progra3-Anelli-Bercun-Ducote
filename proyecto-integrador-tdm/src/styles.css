@@ -287,6 +287,13 @@ p{
 
 }
 
+/* Resultados */
+.resultados{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 /*RESPONSIVE */
 
 @media (max-width: 425px ) {
