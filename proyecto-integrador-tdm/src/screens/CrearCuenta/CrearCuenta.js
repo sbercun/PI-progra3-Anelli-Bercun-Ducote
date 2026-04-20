@@ -78,14 +78,14 @@ class CrearCuenta extends Component {
 
 
                 <form onSubmit={(event) => this.evitarSubmit(event)}>
-                    <input
+                    <input className="formSignIn"
                         type="text"
                         placeholder="Email"
                         value={this.state.email}
                         onChange={(event) => this.controlarEmail(event)} 
                         
                     />
-                    <input
+                    <input className="formSignIn"
                         type="password"
                         placeholder="Contraseña"
                         value={this.state.password}
@@ -94,7 +94,7 @@ class CrearCuenta extends Component {
                         />
                        
 
-                    <button type="submit">Crear cuenta</button>
+                    <button className="botonCrear" type="submit">Crear cuenta</button>
                 </form>
 
                 {this.state.error !== "" ? <p className="mensajeError">{this.state.error}</p> : null}

@@ -76,19 +76,19 @@ class LogIn extends Component {
                     this.onSubmit(this.state.email, this.state.password);
                     }}>
 
-                    <input
+                    <input className="formSignIn"
                         type="email"
                         placeholder="Email"
                         value={this.state.email}
                         onChange={(event) => this.controlarEmail(event)} />
                         
-                    <input
+                    <input className="formSignIn"
                         type="password"
                         placeholder="Contraseña"
                         value={this.state.password}
                         onChange={(event) => this.controlarPassword(event)} />
 
-                    <button type="submit">Log In</button>
+                    <button className="botonCrear" type="submit">Log In</button>
                 </form>
 
 
