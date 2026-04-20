@@ -111,7 +111,7 @@ class Detalle_series extends Component{
         const serie = this.state.serie
 
         if (serie === null) {
-            return <p>Serie no disponible</p>
+            return <p>Cargando...</p>
         }
 
         return (

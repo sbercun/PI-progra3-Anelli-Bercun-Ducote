@@ -108,7 +108,7 @@ class Detalle extends Component{
 
         const pelicula = this.state.pelicula
         if (pelicula === null) {
-            return <p>Pelicula no disponible</p>
+            return <p>Cargando...</p>
         }
 
         return (
