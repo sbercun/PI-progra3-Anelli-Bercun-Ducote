@@ -10,12 +10,25 @@ class Peliculas_populares extends Component {
       array_pelicula: [],
       peliculasFiltradas:[],
       valorUsuario: "",
-      loading: true
+      loading: true,
+      page: 1
     };
   }
+  
+  SiguientePagina() {
+    let nuevaPagina = this.state.page + 1;
+
+    this.setState({
+        page: nuevaPagina,
+        loading: true
+    });
+
+    this.componentDidMount(nuevaPagina);
+  }
+
 
   componentDidMount() {
-    fetch("https://api.themoviedb.org/3/movie/popular" ,
+    fetch(`https://api.themoviedb.org/3/movie/popular?page=${this.state.page}`, 
         {method: "GET",
             headers: {
                 accept: "application/json",
@@ -74,7 +87,7 @@ class Peliculas_populares extends Component {
             onChange={(event) => this.controlarUsuario(event)}
             value={this.state.valorUsuario}
           />
-          <button className="search-button" type="submit">Buscar</button>
+          <button  className="search-button" type="submit">Buscar</button>
         </form>
       </div>
 
@@ -89,6 +102,7 @@ class Peliculas_populares extends Component {
           />
         ))}
       </div>
+      <button className="boton-ver-todas" onClick={() => this.SiguientePagina()} > Siguiente página </button>
     </section>
   );
 }
