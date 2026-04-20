@@ -31,17 +31,8 @@ class LogIn extends Component {
     
     onSubmit(email, password){
         let usuarios = [];
-
-        // Verifico que lo guardado en usuarios no sea null
-        if (usersStorage === null) {
-        this.setState({
-            error: "Las credenciales ingresadas son inválidas"
-        });
-        return;
-        }
-
         let usuariosGuardados = localStorage.getItem("Usuarios");
-
+        
         //verificaciones de usuario ya registrado (email ya existe) y contraseña que coincide con el email
             //recuperar solo el email ingresado y verificar si coincide con la conytraseña ingresada.
         if (usuariosGuardados !== null) {
