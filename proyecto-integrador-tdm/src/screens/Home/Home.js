@@ -1,7 +1,7 @@
 import React from 'react';
 import Peliculas_popular from '../../components/Peliculas_popular/Peliculas_popular';
-import Peliculas_cartel from '../../components/Peliculas_cartel/Peliculas_cartel';
 import Buscador from '../../components/Buscador/Buscador';
+import Series from '../../components/Series/Series';
 
 function Home(){
     return(
@@ -11,9 +11,9 @@ function Home(){
             <section>
                 <Peliculas_popular></Peliculas_popular>
             </section>
-            <h2>Peliculas en cartel</h2>
+            <h2>Series trending</h2>
             <section>
-                <Peliculas_cartel></Peliculas_cartel>
+                <Series></Series>
             </section>
 
         </React.Fragment>

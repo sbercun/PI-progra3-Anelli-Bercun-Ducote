@@ -3,11 +3,11 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies(); 
 
-class Detalle extends Component{
+class Detalle_series extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            pelicula: null,
+            serie: null,
             esFav: false,
             haySesion: false,
             VerDesc: false
@@ -42,6 +42,7 @@ class Detalle extends Component{
         this.setState({esFav: true})
     }
 
+
     sacarFav(id){
         let peliculasGuardadas = localStorage.getItem('favPeliculas');
         let storageRecuperado = JSON.parse(peliculasGuardadas)
@@ -57,14 +58,15 @@ class Detalle extends Component{
         //cambio el estado a False para que aparezca el boton de agregar a favoritos
         this.setState( {esFav: false} )}
 
+
     componentDidMount(){
-        const id = this.props.match.params.id;
+        const serie_id = this.props.match.params.serie_id;
 
         let peliculasGuardadas = localStorage.getItem('favPeliculas');
         let storageRecuperado = JSON.parse(peliculasGuardadas)
         
         if (storageRecuperado !== null) {
-            let esFavorito = storageRecuperado.filter(peliculaId => peliculaId === id);
+            let esFavorito = storageRecuperado.filter(peliculaId => peliculaId == serie_id);
             this.setState({ esFav: esFavorito.length > 0 });
         }
 
@@ -73,16 +75,16 @@ class Detalle extends Component{
             this.setState({ haySesion: true });
         }
 
-        fetch(`https://api.themoviedb.org/3/movie/${id}` ,
+        fetch(`https://api.themoviedb.org/3/tv/${serie_id}`, 
             {method: "GET",
-                headers: {
-                    accept: "application/json",
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTE0MmM2Y2E4ZmM3MTg2OTM0NDU1MDQ2ZGM3NjM2OSIsIm5iZiI6MTc3NDU1OTQ0Mi4xMzY5OTk4LCJzdWIiOiI2OWM1YTBkMmIwNjQ3OWNkYjQ0MjFiMGQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.o5IT_ep0A_LgC8mJgaQmE9oW3CTTtgeN52AN9v8FlyE"
-            }})
+            headers: {
+                accept: "application/json",
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTE0MmM2Y2E4ZmM3MTg2OTM0NDU1MDQ2ZGM3NjM2OSIsIm5iZiI6MTc3NDU1OTQ0Mi4xMzY5OTk4LCJzdWIiOiI2OWM1YTBkMmIwNjQ3OWNkYjQ0MjFiMGQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.o5IT_ep0A_LgC8mJgaQmE9oW3CTTtgeN52AN9v8FlyE"
+        }})
         .then((response) => response.json())
         .then((data) => {
             this.setState({
-                pelicula: data
+                serie: data
             });
         })
         .catch((error) => console.log(error));
@@ -90,15 +92,15 @@ class Detalle extends Component{
 
     render() {
         let botonFav = null;
-        const id = this.props.match.params.id;
+        const serie_id = this.props.match.params.serie_id;
 
         if (this.state.haySesion) {
             botonFav = (
                 <button 
                     className="boton-ver-todas" 
                     onClick={() => this.state.esFav 
-                        ? this.sacarFav(id) 
-                        : this.agregarFav(id)
+                        ? this.sacarFav(serie_id) 
+                        : this.agregarFav(serie_id)
                     }
                 >
                     {this.state.esFav ? "Sacar de favoritos" : "Agregar a favoritos"}
@@ -106,22 +108,22 @@ class Detalle extends Component{
             );
         }
 
-        const pelicula = this.state.pelicula
-        if (pelicula === null) {
-            return <p>Pelicula no disponible</p>
+        const serie = this.state.serie
+
+        if (serie === null) {
+            return <p>Serie no disponible</p>
         }
 
         return (
             <section>
-                <h1>{pelicula.title}</h1>
+                <h1>{serie.name}</h1>
                 <div className="container_detalle">
-                    <img src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} alt="" />
+                    <img src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`} alt="" />
                     <div className="detalles">
-                        <p>Rating: {pelicula.vote_average}</p>
-                        <p>Fecha: {pelicula.release_date}</p>
-                        <p>Duración: {pelicula.runtime} minutos</p>
-                        <p>{pelicula.overview}</p>
-                        <p> Géneros: {pelicula.genres.map((genero) => genero.name).join(", ")} </p>
+                        <p>Rating: {serie.vote_average}</p>
+                        <p>Fecha: {serie.first_air_date}</p>
+                        <p>{serie.overview}</p>
+                        <p> Géneros: {serie.genres.map((genero) => genero.name).join(", ")} </p>
                         {botonFav}
                     </div>
                 </div>
@@ -130,4 +132,4 @@ class Detalle extends Component{
     }
 } 
 
-export default Detalle;
+export default Detalle_series;
