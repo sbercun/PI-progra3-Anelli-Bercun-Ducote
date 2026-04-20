@@ -64,7 +64,7 @@ class Favoritos extends Component {
         return(
             <div>
                 <h1>Mis Favoritos</h1>
-                <section>
+                <section className="seccionFavoritos">
                     {this.state.infoFav.map(peli => (
                         <Pelicula_individual
                             key={peli.id}

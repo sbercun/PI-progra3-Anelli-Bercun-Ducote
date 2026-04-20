@@ -255,6 +255,10 @@ p{
     height: 30px;
     width: 100px;
 }
+/* Favoritos */
+.seccionFavoritos{
+    display: flex;
+}
 
 /*RESPONSIVE */
 
