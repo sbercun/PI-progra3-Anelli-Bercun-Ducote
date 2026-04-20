@@ -31,7 +31,7 @@ class LogIn extends Component {
     
     onSubmit(email, password){
         let usuarios = [];
-        let usuariosGuardados = localStorage.getItem("Usuarios");
+        let usuariosGuardados = localStorage.getItem("usuarios");
         
         //verificaciones de usuario ya registrado (email ya existe) y contraseña que coincide con el email
             //recuperar solo el email ingresado y verificar si coincide con la conytraseña ingresada.
