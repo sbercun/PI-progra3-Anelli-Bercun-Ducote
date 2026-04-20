@@ -6,6 +6,12 @@ const cookies = new Cookies();
 const sesion = cookies.get("user-auth-cookie");
 
 function Menu() {
+    function logout() {
+        cookies.remove("user");
+        window.location.href = "/"
+    }
+
+    let usuario = cookies.get("user");
 
     return (
         <ul className="menu">
@@ -31,6 +37,11 @@ function Menu() {
                     <Link className="menu-link" to="/favoritos">Favoritos</Link>
                 </li>
             }
+            {sesion && (
+                    <button className="menu-link noLink" onClick={logout}>
+                        Logout
+                    </button>
+                )}
         </ul>
     );
 }
