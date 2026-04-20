@@ -32,14 +32,16 @@ class Detalle extends Component{
 
     return (
         <section>
-            <img src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} alt="" />
             <h1>{pelicula.title}</h1>
-            <p>Rating: {pelicula.vote_average}</p>
-            <p>Fecha: {pelicula.release_date}</p>
-            <p>Duración: {pelicula.runtime} minutos</p>
-            <p>{pelicula.overview}</p>
-            <p> Géneros: {pelicula.genres.map((genero) => genero.name).join(", ")} </p>
-            <button>Agregar a favoritos</button>
+            <img src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} alt="" />
+            <div className="detalle">
+                <p>Rating: {pelicula.vote_average}</p>
+                <p>Fecha: {pelicula.release_date}</p>
+                <p>Duración: {pelicula.runtime} minutos</p>
+                <p>{pelicula.overview}</p>
+                <p> Géneros: {pelicula.genres.map((genero) => genero.name).join(", ")} </p>
+                <button>Agregar a favoritos</button>
+            </div>
         </section>
     );
   }

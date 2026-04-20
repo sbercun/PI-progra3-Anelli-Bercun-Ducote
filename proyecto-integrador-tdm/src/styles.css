@@ -24,11 +24,12 @@ h1, h2{
     color: white;
     text-align: center;
     margin-top: 20px;
+    
 }
-
 p{
     color: #ffffff;
 }
+
 /* HEADER */
 .main-header {
     background-color: black;
