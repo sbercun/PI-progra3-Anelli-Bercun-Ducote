@@ -58,7 +58,7 @@ class LogIn extends Component {
 
             //creo la cookie de sesion
             cookies.set('user-auth-cookie', user.email);
-            this.props.history.push("/");
+            window.location.href = "/";
 
         } else {
             this.setState({ error: "Credenciales incorrectas" });

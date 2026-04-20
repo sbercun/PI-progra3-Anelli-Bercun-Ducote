@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Pelicula_individual from "../Pelicula_individual/Pelicula_individual";
+import Item_individual from "../Item_individual/Item_individual";
 import { Link } from "react-router-dom";
 
 class Peliculas_popular extends Component {
@@ -30,7 +30,7 @@ class Peliculas_popular extends Component {
     return (
       <section className="pelicula-popular">
         <div className="container_peliculas">
-          {this.state.array_pelicula.slice(0,6).map((pelicula) => (<Pelicula_individual key={pelicula.id} id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview}/>))}
+          {this.state.array_pelicula.slice(0,6).map((pelicula) => (<Item_individual key={pelicula.id} id={pelicula.id} imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} nombre={pelicula.title} descripcion={pelicula.overview} tipo="movie"/>))}
         </div>
         <Link className="boton-ver-todas" to="/peliculas_populares">Ver todas</Link>
       </section>

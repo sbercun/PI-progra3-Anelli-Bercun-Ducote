@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Serie_individual from "../Serie_individual/Serie_individual";
+import Item_individual from "../Item_individual/Item_individual";
 import { Link } from "react-router-dom";
 
 class Series extends Component {
@@ -33,7 +33,7 @@ class Series extends Component {
       <section className="pelicula-popular">
         <div className="container_peliculas">
           {this.state.array_series.slice(0,6).map((serie) => (
-            <Serie_individual
+            <Item_individual
               key={serie.id}
               id={serie.id}
               imagen={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}
@@ -42,6 +42,7 @@ class Series extends Component {
               rating={serie.vote_average}
               fecha={serie.first_air_date}
               generos={serie.genre_ids}
+              tipo="tv"
             />
           ))}
         </div>

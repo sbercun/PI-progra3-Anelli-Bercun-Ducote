@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
-const sesion = cookies.get("user-auth-cookie");
+
 
 function Menu() {
+    const sesion = cookies.get("user-auth-cookie");
     function logout() {
         cookies.remove("user-auth-cookie");
         window.location.href = "/"

@@ -31,11 +31,11 @@ class Detalle extends Component{
         let storageRecuperado = JSON.parse(peliculasGuardadas)
         //casos que devuelva NULL
         if (storageRecuperado == null) {
-            let primerValor = [id];
+            let primerValor = [{ id: id, tipo: "movie" }];
             let primerValorString = JSON.stringify(primerValor)
             localStorage.setItem('favPeliculas', primerValorString)
         } else{ //casos que devuelva un array con datos
-            storageRecuperado.push(id)
+            storageRecuperado.push({ id: id, tipo: "movie" })
             let storageString = JSON.stringify(storageRecuperado)
             localStorage.setItem('favPeliculas', storageString)
         }
@@ -46,7 +46,7 @@ class Detalle extends Component{
         let peliculasGuardadas = localStorage.getItem('favPeliculas');
         let storageRecuperado = JSON.parse(peliculasGuardadas)
         //filtro quedandome con todo menos el id que quiero sacar de favoritos
-        let storageFiltrado = storageRecuperado.filter( pelicula => pelicula !== id )
+        let storageFiltrado = storageRecuperado.filter(pelicula => pelicula.id.toString() !== id)
 
         //Convierto el resultado a string para guardarlo en el localStorage
         let nuevoArrayString = JSON.stringify(storageFiltrado)
@@ -55,7 +55,10 @@ class Detalle extends Component{
         localStorage.setItem('favPeliculas', nuevoArrayString)
 
         //cambio el estado a False para que aparezca el boton de agregar a favoritos
-        this.setState( {esFav: false} )}
+        this.setState( {esFav: false} )
+    
+    };
+
 
     componentDidMount(){
         const id = this.props.match.params.id;
@@ -64,7 +67,7 @@ class Detalle extends Component{
         let storageRecuperado = JSON.parse(peliculasGuardadas)
         
         if (storageRecuperado !== null) {
-            let esFavorito = storageRecuperado.filter(peliculaId => peliculaId === id);
+            let esFavorito = storageRecuperado.filter(pelicula => pelicula.id == id);
             this.setState({ esFav: esFavorito.length > 0 });
         }
 

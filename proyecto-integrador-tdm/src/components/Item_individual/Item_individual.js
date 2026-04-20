@@ -1,10 +1,10 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie"; 
 
 const cookies = new Cookies(); 
 
-class Serie_individual extends Component{
+class Item_individual extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -27,10 +27,10 @@ class Serie_individual extends Component{
     let storageRecuperado = JSON.parse(peliculasGuardadas)
     
     if (storageRecuperado == null) {
-      let primerValor = [id];
+      let primerValor = [{ id: id, tipo: this.props.tipo }];
       localStorage.setItem('favPeliculas', JSON.stringify(primerValor))
     } else{
-      storageRecuperado.push(id)
+      storageRecuperado.push({ id: id, tipo: this.props.tipo })
       localStorage.setItem('favPeliculas', JSON.stringify(storageRecuperado))
     }
     this.setState({esFav: true})
@@ -42,9 +42,11 @@ class Serie_individual extends Component{
     
     if (!storageRecuperado) return;
 
-    let storageFiltrado = storageRecuperado.filter(pelicula => pelicula != id)
+    let storageFiltrado = storageRecuperado.filter(pelicula => pelicula.id.toString() !== id.toString())
     localStorage.setItem('favPeliculas', JSON.stringify(storageFiltrado))
     this.setState({esFav: false})
+
+    window.location.reload();
   }
 
   componentDidMount(){
@@ -52,7 +54,7 @@ class Serie_individual extends Component{
     let storageRecuperado = JSON.parse(peliculasGuardadas)
     
     if (storageRecuperado !== null) {
-      let esFavorito = storageRecuperado.filter(peliculaId => peliculaId == this.props.id);
+      let esFavorito = storageRecuperado.filter(pelicula => pelicula.id.toString() === this.props.id.toString());
       this.setState({ esFav: esFavorito.length > 0 });
     }
 
@@ -85,18 +87,33 @@ class Serie_individual extends Component{
         <img className="pelicula-image" src={this.props.imagen} alt="" />
         <div className="peliculas-body">
           <h2 className="peliculas-title">{this.props.nombre}</h2> 
+
           <p className={this.state.VerDesc ? "mostrar" : "ocultar"}>
             {this.props.descripcion}
           </p>
-          <button className="peliculas-button" onClick={() => this.state.VerDesc ? this.ocultar() : this.mostrar()}>
+
+          <button 
+            className="peliculas-button" 
+            onClick={() => this.state.VerDesc ? this.ocultar() : this.mostrar()}
+          >
             {this.state.VerDesc ? "Ver menos" : "Ver mas"}
           </button>
+
           {botonFav}
-          <Link className="peliculas-button" to={`/Detalle_series/${this.props.id}`}>Ir a detalle</Link>
+
+          <Link 
+            className="peliculas-button" 
+            to={this.props.tipo === "tv" 
+              ? `/Detalle_series/${this.props.id}` 
+              : `/Detalle/${this.props.id}`
+            }
+          >
+            Ir a detalle
+          </Link>
         </div>
       </article>
     )
   }
 }
 
-export default Serie_individual;
+export default Item_individual;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Pelicula_individual from "../../components/Pelicula_individual/Pelicula_individual";
+import Pelicula_individual from "../../components/Item_individual/Item_individual";
 
 class Resultados extends Component {
   constructor(props) {
