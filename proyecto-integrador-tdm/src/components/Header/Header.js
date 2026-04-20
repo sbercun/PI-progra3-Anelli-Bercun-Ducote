@@ -16,7 +16,6 @@ function Header() {
 
             <nav className='header'>
                 <Menu />
-
                 
             </nav>
         </div>

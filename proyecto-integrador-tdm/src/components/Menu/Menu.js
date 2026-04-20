@@ -7,11 +7,9 @@ const sesion = cookies.get("user-auth-cookie");
 
 function Menu() {
     function logout() {
-        cookies.remove("user");
+        cookies.remove("user-auth-cookie");
         window.location.href = "/"
     }
-
-    let usuario = cookies.get("user");
 
     return (
         <ul className="menu">
