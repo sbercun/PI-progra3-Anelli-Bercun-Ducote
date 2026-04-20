@@ -256,6 +256,18 @@ p{
     width: 100px;
 }
 
+/* IR al detalle */
+.container_detalle{
+    display: flex;
+    align-items: row;
+    margin-top: 20px;
+    padding: 20px;
+    color: #C9A0DC;
+
+}
+
+
+
 /*RESPONSIVE */
 
 @media (max-width: 425px ) {
