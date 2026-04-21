@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Pelicula_individual from "../../components/Item_individual/Item_individual";
+import Item_individual from "../../components/Item_individual/Item_individual";
 import { Link } from "react-router-dom";
 
 
-class Peliculas_cartelera extends Component {
+class Series_todas extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -108,7 +108,7 @@ class Peliculas_cartelera extends Component {
 
       <div className="container_peliculas">
         {this.state.peliculasFiltradas.map((pelicula) => (
-          <Pelicula_individual
+          <Item_individual
             key={pelicula.id}
             id={pelicula.id}
             imagen={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
@@ -123,5 +123,5 @@ class Peliculas_cartelera extends Component {
 }
 }
 
-export default Peliculas_cartelera;
+export default Series_todas;
 

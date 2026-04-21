@@ -46,7 +46,7 @@ class Series extends Component {
             />
           ))}
         </div>
-        <Link className="boton-ver-todas" to="/peliculas_cartelera">Ver todas</Link>
+        <Link className="boton-ver-todas" to="/series_todas">Ver todas</Link>
       </section>
     );
   }
