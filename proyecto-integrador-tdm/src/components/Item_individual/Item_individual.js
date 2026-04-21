@@ -37,32 +37,39 @@ class Item_individual extends Component{
   }
 
   sacarFav(id){
-    let peliculasGuardadas = localStorage.getItem('favPeliculas');
-    let storageRecuperado = JSON.parse(peliculasGuardadas)
-    
-    if (!storageRecuperado) return;
+  let peliculasGuardadas = localStorage.getItem('favPeliculas');
+  let storageRecuperado = JSON.parse(peliculasGuardadas);
 
-    let storageFiltrado = storageRecuperado.filter(pelicula => pelicula.id.toString() !== id.toString())
-    localStorage.setItem('favPeliculas', JSON.stringify(storageFiltrado))
-    this.setState({esFav: false})
+  if (storageRecuperado === null) return;
 
-    window.location.reload();
-  }
+  let storageFiltrado = storageRecuperado.filter(
+    pelicula => pelicula.id != id
+  );
+
+  localStorage.setItem('favPeliculas', JSON.stringify(storageFiltrado));
+  this.setState({ esFav: false });
+
+  window.location.reload();
+}
 
   componentDidMount(){
-    let peliculasGuardadas = localStorage.getItem('favPeliculas');
-    let storageRecuperado = JSON.parse(peliculasGuardadas)
-    
-    if (storageRecuperado !== null) {
-      let esFavorito = storageRecuperado.filter(pelicula => pelicula.id.toString() === this.props.id.toString());
-      this.setState({ esFav: esFavorito.length > 0 });
-    }
+  let peliculasGuardadas = localStorage.getItem('favPeliculas');
+  let storageRecuperado = JSON.parse(peliculasGuardadas);
 
-    let sesion = cookies.get("user-auth-cookie");
-    if (sesion !== undefined) {
-      this.setState({ haySesion: true });
-    }
+  if (storageRecuperado !== null) {
+
+    let esFavorito = storageRecuperado.filter(
+      pelicula => pelicula.id == this.props.id
+    );
+
+    this.setState({ esFav: esFavorito.length > 0 });
   }
+
+  let sesion = cookies.get("user-auth-cookie");
+  if (sesion !== undefined) {
+    this.setState({ haySesion: true });
+  }
+}
 
   render(){
 

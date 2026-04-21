@@ -61,7 +61,25 @@ class Favoritos extends Component {
                 }
 
             })
-            .catch((error) => console.log(error));
+            //si un fetch falla, entra al catch
+            .catch((error) => {
+                // lo muestra en consola
+                console.log(error);
+
+                // mete null para contar que ese fetch igual terminó
+                arrayPeliculas.push(null);
+                //revisa si ya terminaron todos los fetch
+                if (arrayPeliculas.length === storageRecuperado.length) {
+                    this.setState({
+                        //cuando ya terminaron todos los fech, saca los null y deja de cargar
+                        infoFav: arrayPeliculas.filter(error => error !== null),
+                        loading: false
+        });
+    }
+});
+
+
+
         });
     }
 
