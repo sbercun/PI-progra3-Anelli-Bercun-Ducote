@@ -117,7 +117,7 @@ class Peliculas_populares extends Component {
           />
         ))}
       </div>
-      <button className="boton-ver-todas" onClick={() => this.SiguientePagina()} > Siguiente página </button>
+      <button className="boton-ver-todas" onClick={() => this.SiguientePagina()} > Cargar mas</button>
     </section>
   );
 }
