@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import Item_individual from "../Item_individual/Item_individual";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-class Series extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      array_series: [],
-    };
-  }
+function Series(props) {
+ const [series, setSeries] = useState([]);
 
-  componentDidMount() {
+  useEffect( () => {
     fetch("https://api.themoviedb.org/3/tv/popular",
       {
         method: "GET",
@@ -20,19 +16,14 @@ class Series extends Component {
         }
       })
       .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          array_series: data.results
-        });
-      })
+      .then((data) => {setSeries(data.results)})
       .catch((error) => console.log(error));
-  }
-
-  render() {
-    return (
+  }, [])
+    
+  return (
       <section className="pelicula-popular">
         <div className="container_peliculas">
-          {this.state.array_series.slice(0,6).map((serie) => (
+          {series.slice(0,6).map((serie) => (
             <Item_individual
               key={serie.id}
               id={serie.id}
@@ -49,7 +40,6 @@ class Series extends Component {
         <Link className="boton-ver-todas" to="/series_todas">Ver todas</Link>
       </section>
     );
-  }
 }
 
 export default Series;
